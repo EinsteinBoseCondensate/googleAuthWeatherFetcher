@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GoogleAuthWeatherApp.Views.Weather.WeatherPage"
+             xmlns:model="clr-namespace:GoogleAuthWeatherApp.Data;assembly=GoogleAuthWeatherApp.Data"
+            xmlns:local= "clr-namespace:GoogleAuthWeatherApp.Views.Weather">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="{Binding CurrentLocationHeader}"
+                FontSize="20"
+                BackgroundColor="LightSteelBlue"
+                Padding="10"
+                VerticalOptions="CenterAndExpand"                    
+                HorizontalOptions="CenterAndExpand" />
+            <Label Text="{Binding CurrentLocationWeather}"
+                Padding="10"                
+                IsVisible="{Binding ShowCollection}"
+                BackgroundColor="LightGray"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+            <Label Text="{Binding CurrentLocationWeather}" Margin="15, 10, 15, 1" 
+                IsVisible="{Binding DontShowCollection}"
+                Padding="10"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+            <Label Text="Provinces" Padding="10" FontSize="20"
+                VerticalOptions="CenterAndExpand" 
+                BackgroundColor="LightSteelBlue"
+                HorizontalOptions="CenterAndExpand" />
+            <Label Text="{Binding NoResultsCause}" Margin="15, 10, 15, 1" 
+                IsVisible="{Binding DontShowCollection}"
+                Padding="10"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+            <RefreshView x:DataType="local:WeatherViewModel" Command="{Binding LoadItemsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+                <CollectionView
+                    ItemsSource="{Binding Provinces}"
+                    SelectionMode="Single">
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout  
+                            VerticalItemSpacing="2" 
+                            Orientation="Vertical"
+                            SnapPointsType="MandatorySingle"
+                            SnapPointsAlignment="Start"/>
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout  x:DataType="model:Province">
+                                <Label Text="{Binding Name}" Margin="15, 10, 15, 1"                             
+                                    FontSize="20" />
+                                <CollectionView 
+                                    ItemsSource="{Binding Cities}"
+                                    SelectionMode="Single">
+                                    <CollectionView.ItemsLayout>
+                                        <GridItemsLayout  
+                                            VerticalItemSpacing="1" 
+                                            Orientation="Vertical"
+                                            SnapPointsType="MandatorySingle"
+                                            SnapPointsAlignment="Start"/>
+                                    </CollectionView.ItemsLayout>
+                                    <CollectionView.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackLayout  x:DataType="model:City" BackgroundColor="LightGray">
+
+                                                <Label  Margin="30, 10, 15, 1" Text="{Binding Name}" 
+                                                    LineBreakMode="NoWrap" 
+                                                    FontSize="16" />
+                                                <Label  Margin="30, 0, 0, 10" Text="{Binding Description}" 
+                                                    LineBreakMode="NoWrap"
+                                                    FontSize="13" />
+
+                                            </StackLayout>
+                                        </DataTemplate>
+                                    </CollectionView.ItemTemplate>
+                                </CollectionView>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </RefreshView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

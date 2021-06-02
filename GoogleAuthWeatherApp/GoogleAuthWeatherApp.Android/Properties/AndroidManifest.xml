@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.companyname.googleauthweatherapp">
+  <uses-sdk android:minSdkVersion="21" android:targetSdkVersion="30" />
+  <application android:label="GoogleAuthWeatherApp.Android" android:theme="@style/MainTheme"></application>
+  <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+  <uses-permission android:name="android.permission.INTERNET" />
+  <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+  <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+  <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+</manifest>
+
+<!--940637245969-vlssj56d6uf3ks1gk72b6ocjbo2hk1j7.apps.googleusercontent.com-->
+<!--cliente de OAuth Id-->
+<!--940637245969-kl16as9oiae2h572coni1ksf2m3aiavb.apps.googleusercontent.com-->
+<!--cliente de OAuth Id para iOS, REMOVE!-->

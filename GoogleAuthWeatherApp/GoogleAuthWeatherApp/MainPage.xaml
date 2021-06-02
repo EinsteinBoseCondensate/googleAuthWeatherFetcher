@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GoogleAuthWeatherApp.MainPage"
+             xmlns:local="clr-namespace:GoogleAuthWeatherApp">
+
+    <StackLayout x:DataType="local:MainPageViewModel" VerticalOptions="Center" HorizontalOptions="Center">
+        <Button Text="{Binding ButtonText}" HorizontalOptions="Center" VerticalOptions="Center" Command="{Binding LoginCommand}"/>
+        <Label Text="{Binding AuthState}" HorizontalOptions="FillAndExpand" VerticalOptions="Center" />
+    </StackLayout>
+
+</ContentPage>
