@@ -63,11 +63,12 @@ namespace GoogleAuthWeatherApp.Views.Weather
                     var geoLocation = await Geolocation.GetLastKnownLocationAsync();
 
                     var results = await requester.GetElTiempoResultsParsed();
-                    var actualLocationWeatherResult = await mapRequester.GetWeatherFromCoordinates(geoLocation.Latitude.ToString(), geoLocation.Longitude.ToString());
-                    MainThread.BeginInvokeOnMainThread(() =>
+
+                    var actualLocationWeatherResult = await mapRequester.GetWeatherFromCoordinates(geoLocation?.Latitude.ToString(), geoLocation?.Longitude.ToString());
+                    await MainThread.InvokeOnMainThreadAsync(() =>
                     {
                         CurrentLocationWeather = actualLocationWeatherResult != default && actualLocationWeatherResult != null ? actualLocationWeatherResult.Description : "No result to show, check your network or report to developer...";
-                        CurrentLocationHeader = actualLocationWeatherResult != default && actualLocationWeatherResult != null && !string.IsNullOrEmpty(actualLocationWeatherResult.Name) ? actualLocationWeatherResult.Name+" nearby weather" : CurrentLocationWeather;
+                        CurrentLocationHeader = actualLocationWeatherResult != default && actualLocationWeatherResult != null && !string.IsNullOrEmpty(actualLocationWeatherResult?.Name) ? actualLocationWeatherResult.Name+" nearby weather" : CurrentLocationWeather;
 
                         foreach (var pr in results?.Provinces)
                         {
